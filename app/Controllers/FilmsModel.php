@@ -32,20 +32,27 @@ public function getAll(array $filters) {
     }
     
     
+    
     return $this->fetchAll($sql,$filter_values);
     
 }
 public function createFilm(array $new_film){
-  // $this->
+ 
 }
 
 public function getFilmById(int $film_id){
     $sql = "SELECT * FROM $this->table_name WHERE film_id = film_id";
 }
-
+//!Function to delete a film done
 public function deleteFilm(int $film_id){
     $this->delete($this->table_name,["film_id" => $film_id]);
     //$this->update($this->table_name, $data, ["film_id" => $film_id]);
+}
+//!function to update a film
+public function updateFilm(int $film_id, $data){
+    $this->update($this->table_name, $data, ["film_id" => $film_id]);
+}
+public function createActor(){
 
 }
 
