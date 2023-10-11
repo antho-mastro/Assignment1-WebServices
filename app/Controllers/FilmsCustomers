@@ -1,0 +1,13 @@
+<?php
+
+namespace Vanier\Api\Controllers;
+use Vanier\Api\Models\BaseModel;
+
+
+class FilmsCustomer extends BaseModel
+{
+    private string $customers = 'customer';
+
+    
+}
+?>
