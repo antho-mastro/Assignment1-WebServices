@@ -16,9 +16,12 @@ global $app;
 // ROUTE: GET /
 $app->get('/', [AboutController::class, 'handleAboutApi']); 
 
+$app->post('/', [AboutController::class, 'handleAboutApi']); 
 //GET /films
 //$app->get('/films', function (Request $request, Response $response, $args) {
 $app->get('/films', [FilmsController::class,'handleGetFilms']);
+
+$app->post('/films', [FilmsController::class,'handleCreateFilms']);
 /*
 $app->get('/films', function (Request $request, Response $response, $args) {
    

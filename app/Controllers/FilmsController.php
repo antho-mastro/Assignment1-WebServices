@@ -2,38 +2,25 @@
 
 namespace Vanier\Api\Controllers;
 
+use Fig\Http\Message\StatusCodeInterface as HttpCodes;
+use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use PSR\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpBadRequestException;
-use Slim\Exception\HttpNotFoundException;
+use Vanier\Api\Exceptions\HttpInvalidInputsException;
+use Vanier\Api\Helpers\Input;
+use Vanier\Api\Models\BaseModel;
 
-class FilmsController
+class FilmsController extends BaseController
 {
+    
     private $films_model = null;
     public function __construct(){
         $this->films_model = new FilmsModel();
     }
-    public function handleGetFilms(Request $request, Response $response, array $uri_args)
+    
+    public function handleCreateFilms(Request $request, Response $response)
     {
-        $filters = $request->getQueryParams();
-
-        $validation_response = $this->isValidPagingParams($filters);
-        if($validation_response === true){
-
-            $this->films_model->setPaginationOptions(
-                $filters['page'],
-                $filters['page_size']
-            );
-        
-        }else{
-            //httpbadrequestexception
-        }
-        $films = $this->films_model->getAll($filters);
-
-        return $this->prepareOkResponse($response, (array)$films);
-
-        //!MY CODE FROM HERE 
-        //throw new HttpNotFoundException($request, "Failure");
+    
         
             //echo 'hello from films callback!';exit;
             //Pull the list of films from the DB 
@@ -42,7 +29,7 @@ class FilmsController
                 throw new HttpBadRequestException($request, "Couldnt create films");
         }
         //TODO: VALIDATE request payload
-//!NOTE TEST
+        //!NOTE TEST
 //?TEST
         //TODO: check if the film contains valid values
         //call a validation function that accepts
@@ -55,16 +42,17 @@ class FilmsController
             $this->films_model->createFilm($film);
         }
         //prepare a response
-        /*
+        
         $response_data = array(
             "code" => HttpCodes::STATUS_CREATED,
             "message" => "Created list of films succesfully",
 
         );
-        return $this->prepareOkResponse(
+       // return $this->prepareOkResponse(
 
-        );
-        */
+        //);
+        
+        
         $filters = $request->getQueryParams();
         $films = $this->films_model->getAll($filters);
       
@@ -79,4 +67,25 @@ class FilmsController
         return $response;
     }
 
+public function handleGetFilms(Request $request, Response $response, array $uri_args){
+
+    $filters = $request->getQueryParams();
+
+    $validation_response = $this->isValidPagingParams($filters);
+    if($validation_response === true){
+
+        $this->films_model->setPaginationOptions(
+            $filters['page'],
+            $filters['page_size']
+        );
+    
+    }else{
+        //httpbadrequestexception
+    }
+
+    $films = $this->films_model->getAll($filters);
+
+    return $this->prepareOkResponse($response, (array)$films);
+}
+   
 }
