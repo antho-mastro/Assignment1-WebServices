@@ -55,6 +55,7 @@ public function deleteFilm(int $film_id){
     //$this->update($this->table_name, $data, ["film_id" => $film_id]);
 }
 //!function to update a film
+
 public function updateFilm(int $film_id, $data){
     $this->update($this->table_name, $data, ["film_id" => $film_id]);
 }
