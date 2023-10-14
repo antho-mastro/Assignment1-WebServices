@@ -21,15 +21,18 @@ class CustomerModel extends BaseModel
             $filter_values[':title'] = $filters['title'];
         }
     }
+    public function getFilmById(int $customer_id){
+        $sql = "SELECT * FROM $this->table_name WHERE customer_id = customer_id";
+    }
     //!Update function customers
-    public function updateFilm(int $custumer_id, $data){
+    public function updateFilm(int $customer_id, $data){
         $this->update($this->table_name, $data, ["film_id" => $customer_id]);
     }
   
     //!Delete function customers
-    public function deleteFilm(int $film_id){
-        $this->delete($this->table_name,["film_id" => $film_id]);
-        //$this->update($this->table_name, $data, ["film_id" => $film_id]);
+    public function deleteCustomer(int $customer_id){
+        $this->delete($this->table_name,["film_id" => $customer_id]);
+        
     }
     
   
