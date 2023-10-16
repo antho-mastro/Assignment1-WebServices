@@ -5,6 +5,8 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Exception\HttpNotFoundException;
 use Vanier\Api\Controllers\AboutController;
 use Vanier\Api\Controllers\FilmsController;
+use Vanier\Api\Controllers\FilmsCustomer;
+
 
 // Import the app instance into this file's scope.
 global $app;
@@ -22,6 +24,10 @@ $app->post('/', [AboutController::class, 'handleAboutApi']);
 $app->get('/films', [FilmsController::class,'handleGetFilms']);
 
 $app->post('/films', [FilmsController::class,'handleCreateFilms']);
+
+$app->get('/films', [ActorController::class,'handleGetActor']);
+
+$app->post('/films', [ActorController::class,'handleCreateActor']);
 /*
 $app->get('/films', function (Request $request, Response $response, $args) {
    

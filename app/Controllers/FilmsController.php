@@ -7,7 +7,6 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Exception\HttpBadRequestException;
 use Vanier\Api\Exceptions\HttpInvalidInputsException;
-use Vanier\Api\Helpers\Input;
 use Vanier\Api\Models\BaseModel;
 
 class FilmsController extends BaseController
@@ -17,7 +16,14 @@ class FilmsController extends BaseController
     public function __construct(){
         $this->films_model = new FilmsModel();
     }
-    
+        
+    /**
+     * handleCreateFilms
+     *
+     * @param  mixed $request
+     * @param  mixed $response
+     * @return void
+     */
     public function handleCreateFilms(Request $request, Response $response)
     {
     
@@ -67,6 +73,14 @@ class FilmsController extends BaseController
         return $response;
     }
 
+/**
+ * handleGetFilms
+ *
+ * @param  mixed $request
+ * @param  mixed $response
+ * @param  mixed $uri_args
+ * @return void
+ */
 public function handleGetFilms(Request $request, Response $response, array $uri_args){
 
     $filters = $request->getQueryParams();

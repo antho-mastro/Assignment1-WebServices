@@ -10,7 +10,7 @@ use Vanier\Api\Models\BaseModel;
 
 
 class CustomerController extends BaseController{
-
+//?Why is this not defined
     private $actor_model = null;
     public function __construct(){
         $this->actor_model = new ActorsModel();
@@ -51,7 +51,7 @@ class CustomerController extends BaseController{
         return $response;
     }
     public function handleGetActors(Request $request, Response $response, array $uriargs){
-        
+
     $filters = $request->getQueryParams();
 
      $actor = $this->actor_model->getAll($filters);
