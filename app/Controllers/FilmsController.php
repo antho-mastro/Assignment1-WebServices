@@ -7,7 +7,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Exception\HttpBadRequestException;
 use Vanier\Api\Exceptions\HttpInvalidInputsException;
-use Vanier\Api\Models\BaseModel;
+use Vanier\Api\Models\FilmsModel;
 
 class FilmsController extends BaseController
 {
@@ -99,7 +99,35 @@ public function handleGetFilms(Request $request, Response $response, array $uri_
 
     $films = $this->films_model->getAll($filters);
 
+    //$shows = $this->getTVMazeShows();
+
+    
+    
+
     return $this->prepareOkResponse($response, (array)$films);
 }
+/*
+
+//! HttpClient Lab 
+private function getTVMazeShows(): mixed{
+    $ws_invoker = new WebServiceInvoker([]);
+    $uri = "https://api.tvmaze.com/shows";
+    $shows = $ws_invoker->invokeUri($uri);
+    $processed_shows = array();
+//Can var dump it
+//--Process the list 
+foreach ($shows as $key => $show){
+$processed_shows [$show->id]["name"] = $show->name;
+$processed_shows [$show->id]["language"] = $show->language;
+$processed_shows [$show->id]["genres"] = implode(",", $show->genres);
+$processed_shows [$show->id]["premiered"] = $show->premiered;
+$processed_shows [$show->id]["rating"] = $show->rating->average;
+$processed_shows [$show->id]["summary"] = $show->summary;
+$processed_shows [$show->id]["type"] = $show->type;
+}    
+
+return $processed_shows;
+}
+*/
    
 }

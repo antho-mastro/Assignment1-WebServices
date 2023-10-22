@@ -6,7 +6,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Exception\HttpBadRequestException;
 use Vanier\Api\Exceptions\HttpInvalidInputsException;
 use Vanier\Api\Models\BaseModel;
-
+use Vanier\Api\Models\ActorsModel;
 
 
 class CustomerController extends BaseController{

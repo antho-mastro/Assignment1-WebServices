@@ -1,6 +1,6 @@
 <?php
 
-namespace Vanier\Api\Controllers;
+namespace Vanier\Api\Models;
 use Vanier\Api\Models\BaseModel;
 
 
@@ -11,9 +11,9 @@ class FilmsModel extends BaseModel
    
     private $container;
 
-    public function __construct($container) {
+    public function __construct() {
         parent::__construct();
-        $this->container = $container;
+        
     }
     
     //Getting all titles of books

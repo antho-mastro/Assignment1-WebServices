@@ -1,9 +1,9 @@
 <?php
 
-namespace Vanier\Api\Controllers;
+namespace Vanier\Api\Models;
 use Vanier\Api\Models\BaseModel;
 
-class actorsModel extends BaseModel {
+class ActorsModel extends BaseModel {
     private string $table_name= 'actor';
     
 
