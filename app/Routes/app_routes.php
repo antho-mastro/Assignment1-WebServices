@@ -16,18 +16,26 @@ global $app;
 // The Vanier\Api must be used as namespace prefix. 
 
 // ROUTE: GET /
-$app->get('/', [AboutController::class, 'handleAboutApi']); 
+$app->get('/', [AboutController::class, 'handleAboutApi']);
 
-$app->post('/', [AboutController::class, 'handleAboutApi']); 
+$app->post('/', [AboutController::class, 'handleAboutApi']);
 //GET /films
 //$app->get('/films', function (Request $request, Response $response, $args) {
 $app->get('/films', [FilmsController::class,'handleGetFilms']);
 
 $app->post('/films', [FilmsController::class,'handleCreateFilms']);
 
-$app->get('/films', [ActorController::class,'handleGetActor']);
+$app->put('/films', [FilmsController::class,'updateFilm']);
 
-$app->post('/films', [ActorController::class,'handleCreateActor']);
+$app->delete('/films', [FilmsController::class,'deleteFilm']);
+
+$app->get('/actors', [ActorController::class,'handleGetActor']);
+
+$app->post('/actors', [ActorController::class,'handleCreateActor']);
+
+$app->delete('/customers', [CustomerController::class,'deleteCustomers']);
+
+$app->put('/customers', [CustomerController::class,'updateCustomer']);
 /*
 $app->get('/films', function (Request $request, Response $response, $args) {
    

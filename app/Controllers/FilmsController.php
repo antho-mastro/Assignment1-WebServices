@@ -106,6 +106,30 @@ public function handleGetFilms(Request $request, Response $response, array $uri_
 
     return $this->prepareOkResponse($response, (array)$films);
 }
+
+    public function DeleteFilm(Request $request, Response $response){
+
+
+        $films_id = $request->getParsedBody();
+
+
+        foreach($films_id as $key => $id){
+
+        }
+            if($this->isValidData($id, $this->rules)){
+                $this->films_model->deleteFilm($id);
+            }else{
+                //TODO: add $validation_response to the list of errors.
+            }
+      
+        $response_data = array(
+            "code" => HttpCodes::STATUS_CREATED,
+            "message" => "The list of film has been deleted"
+        );
+
+        return $this->prepareOkResponse($response,$response_data, HttpCodes::STATUS_CREATED);
+    }
+
 /*
 
 //! HttpClient Lab 
